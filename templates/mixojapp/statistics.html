@@ -1,0 +1,23 @@
+{% include "mixojapp/includes/_common_head.html" %}
+
+{% load staticfiles %}
+<link rel="stylesheet" href="{% static 'mixojapp/css/statistics.css' %}" />
+
+{% include "mixojapp/includes/_common_head_sec.html" %}
+{% include "mixojapp/includes/_common_nav.html" %}
+{#以上为引入头部#}
+
+{#题目数据#}
+<div class="statistic">
+    <table class="table table-hover">
+        {% for key, value in statistic.items %}
+        <tr>
+            <td>{{ key }}</td>
+            <td>{{ value }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+{#以下为引入尾部#}
+{% include "mixojapp/includes/_common_foot.html" %}

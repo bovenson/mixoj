@@ -1,0 +1,232 @@
+HeFei University of Technology : China
+China Science Technology University : China
+University Of Anhui : China
+Anhui University of Technology : China
+Agricultural University Of Anhui : China
+Medical University Of Anhui : China
+Anhui Normal University : China
+Anhui University of Science and Technology : China
+Western Anhui University : China
+Anhui University of Engineering Science   Technology : China
+Beijing University : China
+Renmin University Of China : China
+Tsinghua University : China
+Beijing Jiaotong University : China
+University Of Science and Technology Beijing : China
+China University Of Petroleum Beijing : China
+Beijing University Of Posts and Telecommunications : China
+China Agricultural University : China
+Beijing Forestry University : China
+Beijing University Of Chinese Medicine : China
+Beijing Normal University : China
+Beijing Foreign Studies University : China
+Beijing Language and Culture University : China
+University Of International Business and Economics : China
+The Central University Of Finance and Economics : China
+China University Of Political Science and Law : China
+Central University For Nationalities : China
+Chinese Peking Union Medical College : China
+Beijing Sport University : China
+University Of Chongqing : China
+Southwestern Normal University : China
+Industrial and Commercial University Of Chongqing : China
+Agricultural University Of Southwest : China
+Medical University Of Chongqing : China
+Southwest Politics and Law University : China
+Institute Of Unity and Coherence In Writing Of Chongqing : China
+Chongqing Sanxia Institute : China
+Traffic Institutes Of Chongqing : China
+Post and Telecommunications Institutes Of Chongqing : China
+Fujian University of Technology : China
+Xiamen University : China
+Huaqiao University : China
+University Of Agriculture and Forestry In Fujian : China
+Collects The American University : China
+University Of Fuzhou : China
+Yang en University : China
+Medical University Of Fujian : China
+Fujian Normal University : China
+Colleges Of Traditional Chinese Medicine Of Fujian : China
+Zhongshan University : China
+Institutes Of Technology Of South China : China
+Ji nan University : China
+University Of Shantou : China
+Shenzhen University : China
+Five City University : China
+Guangdong University of Technology : China
+Agricultural University Of South China : China
+Marine University Of Zhanjiang : China
+Traditional Chinese Medicine University Of Guangzhou : China
+Guangzhou University : China
+Guangxi University : China
+Guangxi Medical University : China
+Guangxi Normal University : China
+Electronic Engineering Institutes Of Guilin : China
+Technical Colleges Of Guilin : China
+Guangxi Technical College : China
+Colleges Of Traditional Chinese Medicine Of Guangxi : China
+Medical Colleges Of Guilin : China
+National Medical College Of Right Rivers : China
+Guangxi Teachers College : China
+University Of Hainan : China
+Tropical Agricultural University Of South China : China
+Hainan Medical College : China
+Hainan Teachers College : China
+North China Electric Power University : China
+University Of Hebei : China
+Hebei University of Technology : China
+University On The Mountain Of Swallows : China
+University Of Science and Technology Of Hebei : China
+Agricultural University Of Hebei : China
+Hebei Medical University : China
+Hebei Normal University : China
+University Of Business   Economics In Hebei : China
+Chinese People  S Institute Of Armed Police Force : China
+Central Judicial Police Officer s Institutes : China
+Institutes Of Technology Of Hebei : China
+Hebei University of Technology : China
+Railway Institutes Of Shijiazhuang : China
+Hebei Institute Of Civil Engineering : China
+Zhengzhou University : China
+He nan University : China
+Agricultural University Of He nan : China
+He nan Normal University : China
+Institutes Of Technology Of He nan : China
+University Of Science and Technology Of He nan : China
+North China Institute of Water Conservancy and Hydroelectric Power : China
+He nan University of Technology : China
+Light Engineering Institutes Of Zhengzhou : China
+Management Colleges Of Aircraft Industry Of Zhengzhou : China
+Middle and Southern University : China
+Hunan University : China
+University Of Xiangtan : China
+University Of Jishou : China
+University Of Nanhua : China
+Agricultural University Of Hunan : China
+Hunan Normal University : China
+Institutes Of Technology Of Changsha : China
+Technical Colleges Of Zhuzhou : China
+University Of Science and Technology Of Hunan : China
+Changsha University : China
+Nanjing University : China
+Southeast China University : China
+China Mining University : China
+River Sea University : China
+University Of The South : China
+Agricultural University Of Nanjing : China
+China Medicine University : China
+Institutes Of Technology Of Nanjing : China
+Nanjing Aero Space University : China
+University Of Suzhou : China
+University Of Nanchang : China
+Traffic University Of East China : China
+Agricultural University Of Jiangxi : China
+Jiangxi Normal University : China
+Finance and Economics University Of Jiangxi : China
+Institutes Of Technology Of Jiangxi : China
+East China Institute Of Technology : China
+Aviation Engineering Institutes Of Nanchang : China
+Ceramic Institutes Of Jingdezhen : China
+Nanchang University of Technology : China
+Institute Of Technology Of Dalian : China
+Northeastern University : China
+Maritime Affairs University Of Dalian : China
+Liaoning University : China
+University Of Dalian : China
+University Of Shenyang : China
+Liaoning Project Technology University : China
+Shenyang University of Technology : China
+Agricultural University Of Shenyang : China
+Chinese Medical Sciences University : China
+University Of The Inner Mongol : China
+National University Of The Inner Mongol : China
+Inner Mongol University of Technology : China
+Agricultural University Of The Inner Mongol : China
+Inner Mongol Normal University : China
+University Of Science and Technology Of The Inner Mongol : China
+Medical Colleges Of The Inner Mongol : China
+Finance and Economics Institute Of The Inner Mongol : China
+Institutes Of Chifeng : China
+Institutes Of HulunBuir : China
+Technological Institute Of Qingdao Harbor : China
+Shandong University : China
+Chinese Marine University : China
+University Of Qingdao : China
+University Of Science and Technology Of Shandong : China
+University Of Yantai : China
+University Of Ji nan : China
+Shandong Agricultural University : China
+Shandong Traditional Chinese Medicine University : China
+Shandong Normal University : China
+University Of Shanxi : China
+Institutes Of Technology Of Taiyuan : China
+Agricultural University Of Shanxi : China
+Mountain Western Medicine S University : China
+Shanxi Normal University : China
+Shanxi Finance and Economics University : China
+Beijing University Studies : China
+University Of Science and Technology Of Taiyuan : China
+Manages The Medical College Long : China
+Colleges Of Traditional Chinese Medicine Of Shanxi : China
+Fudan University : China
+Tongji University : China
+Shanghai Jiao Tong University : China
+East China University Of Science : China
+Donghua University : China
+East China Normal University : China
+Shanghai International Studies University : China
+Shanghai University Of Finance : China
+Shanghai University : China
+Shanghai University Of Technology : China
+Shanghai University Of Engineering Science : China
+Shanghai Normal University : China
+Shanghai Maritime University : China
+Shanghai University Of Electric Power : China
+Shanghai Institute Of Technology : China
+Shanghai Institute Of Foreign Trade : China
+East China University Of Politics and Law : China
+Shanghai University Of Sport : China
+Shanghai Conservatory Of Music : China
+Shanghai Theatre Academy : China
+Nankai University : China
+University Of Tianjin : China
+Tianjin University of Technology : China
+Institutes Of Technology Of Tianjin : China
+Medical University Of Tianjin : China
+Tianjin Normal University : China
+University Of Science and Technology Of Tianjin : China
+Finance and Economics University Of Tianjin : China
+Civil Aeronautical Engineering Institutes Of China : China
+Urban Construction Institutes Of Tianjin : China
+Wuhan University : China
+Zhongnan University Of Economics   Law : China
+Central China University Science and Technology : China
+Wuhan University Of Technology : China
+China University Of Geosciences : China
+Central China Agricultural University : China
+Central China Normal University : China
+Hubei University : China
+Changjiang University : China
+Jianghan University : China
+South Center University For Nationalities : China
+Hubei University Of Technology : China
+Wuhan Institute Of Technology : China
+Wuhan University Of Science and Engineering : China
+Wuhan University of Technology : China
+Hubei College Of Traditional Chinese Medicine : China
+Hubei Normal University : China
+Wuhan Institute Of Sport : China
+Hubei Institute Of Fine Acts : China
+Wuhan Conservatory Of Music : China
+Hubei Institute For Nationalities : China
+Zhejiang University : China
+University Of Ningbo : China
+Zhejiang University of Technology : China
+Zhejiang Normal University : China
+Electronic University Of Science  Technology Of Hangzhou : China
+Institutes Of Technology Of Zhejiang : China
+Institutes Of Jiaxing : China
+China Measures The Institute : China
+Scientific and Technological Institutes Of Zhejiang : China
+Oceanography Institute Of Zhejiang : China
+Hangzhou University : China

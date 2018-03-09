@@ -1,0 +1,25 @@
+{% include "mixojapp/includes/_common_head.html" %}
+
+<script>
+    var res = "{{ res }}";
+    var next_page = "{{ next_page }}";
+    if (next_page != null) {
+        var URL = next_page
+    } else {
+        var URL = "/index";
+    }
+    setTimeout(function(){
+        location.href = URL;
+    }, 2000);
+</script>
+
+{% include "mixojapp/includes/_common_head_sec.html" %}
+{% include "mixojapp/includes/_common_nav.html" %}
+{#以上为引入头部#}
+
+<div id="show_msg" style="margin-left: 30px; margin-top: 30px;">
+    <p>{{ msg }}<br />即将为您跳转...</p>
+</div>
+
+{#以下为引入尾部#}
+{% include "mixojapp/includes/_common_foot.html" %}

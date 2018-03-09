@@ -1,0 +1,6 @@
+Asia : Root
+Africa : Root
+Oceania : Root
+Europe : Root : European
+North America : Root
+South America : Root

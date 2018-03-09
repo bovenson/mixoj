@@ -1,0 +1,555 @@
+{% include "mixojapp/includes/_common_head.html" %}
+{% load staticfiles %}
+{#<link rel="stylesheet" href="{% static 'tree/css/bootstrap-treeview.css' %}">#}
+{% include "mixojapp/includes/_common_head_sec.html" %}
+{% include "mixojapp/includes/_common_nav.html" %}
+{#以上为引入头部#}
+
+<div class="container-fluid" id="tree-main">
+    <div class="row">
+        {#知识树#}
+        <div class="col-xs-6">
+            <div id="knowledge-tree"></div>
+        </div>
+{#        更新选项#}
+        <div class="col-xs-6">
+            <form>
+                <div class="form-inline row">
+{#                    <label class="col-xs-2" style="text-align: right;padding-top: 7px;">选择OJ</label>#}
+                    <label class="col-xs-4">
+                        <select class="form-control" id="select-oj">
+                            {% for oj in ojs %}
+                                <option>{{ oj.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </label>
+                </div>
+                <div class="clearfix" style="height: 15px;"></div>
+                <div class="form-inline row" style="padding-left: 15px;">
+{#                    <label class="col-xs-2" style="text-align: right;padding-top: 7px;">开始ID</label>#}
+                    <input class="form-control col-xs-4" type="number" id="input-update-nodes-start" oninput="updateEndId()" placeholder="Start ID">
+{#                    <label class="col-xs-2" style="text-align: right;padding-top: 7px;">结束ID</label>#}
+                    <input class="form-control col-xs-4 col-xs-offset-1" type="number" id="input-update-nodes-stop" placeholder="End ID">
+                </div>
+                <div class="clearfix" style="height: 15px;"></div>
+                <div class="form-inline row" style="padding-left: 15px;">
+                    <button class="btn btn-default" type="button" id="button-start-update-nodes" onclick="startUpdateNodesById()">更新</button>
+                    <button class="btn btn-default" type="button" id="button-stop-update-nodes" onclick="stopUpdateNodesById()" disabled="disabled" >停止</button>
+                </div>
+            </form>
+            <div class="clearfix" style="height: 15px;padding-left: 0;margin-left: 0;"></div>
+            <div class="panel panel-default">
+                <div class="panel-heading">提示</div>
+{#                <div class="panel-body" style="background-color: black;padding: 0;height: 350px;overflow: auto;">#}
+                    <pre style="color: white;background-color: black;font-size: 12px;height: 350px;overflow: auto;" id="terminal-tip"></pre>
+{#                </div>#}
+            </div>
+        </div>
+    </div>
+</div>
+
+{#节点菜单选项#}
+<div id="menu-button-group" class="btn-group-vertical" role="group" style="display: none;">
+    <button onclick="showAddProblemToNodeModal()" type="button" class="btn btn-default">添加题目</button>
+    <button onclick="editNode()" type="button" class="btn btn-default">编辑</button>
+    <button onclick="showAddChildNodeModal()" type="button" class="btn btn-default">添加子节点</button>
+    <button onclick="showAddBrotherNodeModal()" type="button" class="btn btn-default">添加兄弟节点</button>
+    <button onclick="showDeleteNodeModal()" type="button" class="btn btn-default">删除</button>
+</div>
+
+<!-- 向节点添加题目-模态框（Modal） -->
+<div class="modal fade" id="modal-add-problem" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">
+                    <span style="font-weight: 600;font-size: 16px;">向节点</span>
+                    <span id="modal-add-problem-node-name" style="color: red;font-weight: 800;font-size: 20px;"></span>
+                    <span style="font-weight: 600;font-size: 16px;">添加题目</span>
+                </h4>
+            </div>
+            <div class="modal-body">
+                <form action="" method="post">
+                    <div class="form-group">
+                        <label>
+                            <select class="form-control" id="modal-add-problem-select-oj">
+                                {% for oj in ojs %}
+                                    <option>{{ oj.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control col-xs-4" type="number" id="modal-add-problem-id" placeholder="题目ID">
+                    </div>
+                </form>
+            </div>
+            <div class="clearfix" style="height: 30px;"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" onclick="addProblemToNode()">提交</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 编辑节点-模态框（Modal） -->
+<div class="modal fade" id="modal-edit-node" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">
+                    <span style="font-weight: 600;font-size: 16px;">编辑节点</span>
+                    <span id="modal-edit-node-name" style="color: red;font-weight: 800;font-size: 20px;"></span>
+                </h4>
+            </div>
+            <div class="modal-body">
+                <form action="" method="post">
+                    <div class="form-group">
+                        <label for="modal-edit-node-name-input">节点名</label>
+                        <input type="text" class="form-control" id="modal-edit-node-name-input"
+                               placeholder="输入节点名"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="modal-edit-node-name-input">
+                            <span>别名</span>
+                            <span style="font-size: 12px;font-weight: 400;color: #ababab;">
+                                例如,动态规划的别名有:动规,dynamic programming,DP ...(英文逗号分离)
+                            </span>
+                        </label>
+                        <input type="text" class="form-control" id="modal-edit-node-synonym-input"
+                               placeholder="输入节点别名"/>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" onclick="updateNode()">提交</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 添加子节点-模态框（Modal） -->
+<div class="modal fade" id="modal-add-child-node" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">
+                    <span style="font-weight: 600;font-size: 16px;">添加子节点</span>
+                </h4>
+            </div>
+            <div class="modal-body">
+                <form action="" method="post">
+                    <div class="form-group">
+                        <label for="modal-add-child-node-name-input">节点名</label>
+                        <input type="text" class="form-control" id="modal-add-child-node-name-input"
+                               placeholder="输入节点名"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="modal-add-child-node-name-input">
+                            <span>别名</span>
+                            <span style="font-size: 12px;font-weight: 400;color: #ababab;">
+                                例如,动态规划的别名有:动规,dynamic programming,DP ...(英文逗号分离)
+                            </span>
+                        </label>
+                        <input type="text" class="form-control" id="modal-add-child-node-synonym-input"
+                               placeholder="输入节点别名"/>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" onclick="addChildNode()">提交</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 添加兄弟节点-模态框（Modal） -->
+<div class="modal fade" id="modal-add-brother-node" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">
+                    <span style="font-weight: 600;font-size: 16px;">添加兄弟节点</span>
+                </h4>
+            </div>
+            <div class="modal-body">
+                <form action="" method="post">
+                    <div class="form-group">
+                        <label for="modal-add-brother-node-name-input">节点名</label>
+                        <input type="text" class="form-control" id="modal-add-brother-node-name-input"
+                               placeholder="输入节点名"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="modal-add-brother-node-name-input">
+                            <span>别名</span>
+                            <span style="font-size: 12px;font-weight: 400;color: #ababab;">
+                                例如,动态规划的别名有:动规,dynamic programming,DP ...(英文逗号分离)
+                            </span>
+                        </label>
+                        <input type="text" class="form-control" id="modal-add-brother-node-synonym-input"
+                               placeholder="输入节点别名"/>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" onclick="addBrotherNode()">提交更改</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 删除节点-模态框（Modal） -->
+<div class="modal fade" id="modal-delete-node" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">
+                    <span style="font-weight: 600;font-size: 16px;">删除节点</span>
+                    <span id="modal-delete-node-name" style="color: red;font-weight: 800;font-size: 20px;"></span>
+                </h4>
+            </div>
+            <div class="modal-body">
+                <p>确定要删除该节点吗？<br/>其子节点也会一并删除,题目不会被删除.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="deleteNode()">确定</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{#以下为引入尾部#}
+{#<script src="{% static 'tree/js/jquery-2.1.4.js' %}"></script>#}
+<script src="{% static 'tree/js/bootstrap-treeview.js' %}"></script>
+
+<script>
+    $.post('{% url 'mixojapp:get_knowledge_tree' %}', {}, function(data) {
+    }, 'json').success(function (data) {
+        var tree = data["data"];
+        buildTree(tree);
+    });
+    function buildTree(data) {
+        $("#knowledge-tree").treeview({
+            enableLinks: true,
+            showTags: true,
+            data: data,
+            levels: 0,
+            onNodeSelected: nodeSelectedFunction
+        });
+    }
+    // 点击节点名后调用的函数
+    function nodeNameClick(nodeID) {
+        window.location.href="/problemlist?page_from=knowledge_tree&node_id=" + nodeID;
+    }
+    function nodeSelectedFunction(event, data) {
+{#        alert(data["pid"]);#}
+    }
+
+    var menu_button_group = $('#menu-button-group');
+    function nodeMenu(obj, id, pid) {
+{#        alert(obj);#}
+{#        alert(obj.id);#}
+        var cur_menu = $('#'+obj.id);
+        var left = cur_menu.offset().left;
+        var top = cur_menu.offset().top + cur_menu.outerHeight(true)+ 10;
+{#        alert(cur_menu.offset().top);#}
+        menu_button_group.val(id);
+        menu_button_group.css("position", "absolute");
+        menu_button_group.css("left", left + "px");
+        menu_button_group.css("top", top + "px");
+        menu_button_group.show();
+{#        menu_button_group.offset().top = cur_menu.offset().top;#}
+{#        menu_button_group.offset().left = cur_menu.offset().left;#}
+{#        alert(obj.id);#}
+{#        alert(id);#}
+{#        alert(pid);#}
+    }
+    // 点击其他位置隐藏节点菜单
+    $(document).bind('click',function(ev){
+        var e = ev || window.event;
+        var elem = e.target || e.srcElement;
+        while (elem) {
+            if (elem.className && elem.className.indexOf('menu')>-1) {
+                return;
+            }
+            elem = elem.parentNode;
+        }
+        menu_button_group.css('display','none');
+    });
+
+{#    模态窗口#}
+{#    编辑节点#}
+
+    // 编辑节点
+    var modal_edit_node = $('#modal-edit-node');
+    var modal_edit_node_name = $('#modal-edit-node-name');
+    var modal_edit_node_name_input = $('#modal-edit-node-name-input');
+    var modal_edit_node_synonym_input = $('#modal-edit-node-synonym-input');
+    function editNode() {
+        modal_edit_node.modal("show");
+        // 得到节点ID
+        var nodeId = menu_button_group.val();
+        // 得到节点信息
+        $.post('{% url 'mixojapp:knowledge_tree_node_edit' %}', {
+            action: "show",
+            nodeId: nodeId
+        }, function (data) {
+            modal_edit_node_name.text(data["name"]);
+            modal_edit_node_name_input.val(data["name"]);
+            modal_edit_node_synonym_input.val(data["synonym"]);
+        }, 'json');
+    }
+    function updateNode() {
+        // 得到节点ID
+        var nodeId = menu_button_group.val();
+        var nodeName = modal_edit_node_name_input.val().trim();
+        var nodeSynonym = modal_edit_node_synonym_input.val().trim();
+        if (nodeName.length == 0) {
+            alert("节点名不能为空");
+            return;
+        }
+        // 更新节点信息
+        $.post('{% url 'mixojapp:knowledge_tree_node_edit' %}', {
+            action: "update",
+            nodeId: nodeId,
+            nodeName: nodeName,
+            nodeSynonym: nodeSynonym
+        }, function (data) {
+            if (data["res"] != "success") {
+                alert("更新节点时出错：" + data["msg"]);
+            } else {
+                location.reload();
+            }
+        }, 'json');
+        modal_edit_node.modal("hide");
+    }
+
+    // 添加孩子节点
+    var modal_add_child_node = $('#modal-add-child-node');
+    var modal_add_child_node_name_input = $('#modal-add-child-node-name-input');
+    var modal_add_child_node_synonym_input = $('#modal-add-child-node-synonym-input');
+    function showAddChildNodeModal() {
+        modal_add_child_node.modal("show");
+    }
+    function addChildNode() {
+        // 得到当前节点
+        var nodeId = menu_button_group.val();
+        var newNodeName = modal_add_child_node_name_input.val().trim();
+        var newNodeSynonym = modal_add_child_node_synonym_input.val().trim();
+        if (newNodeName.length == 0) {
+            alert("节点名不能为空");
+            return;
+        }
+        // 添加子节点信息
+        $.post('{% url 'mixojapp:knowledge_tree_node_edit' %}', {
+            action: "add-child",
+            nodeId: nodeId,
+            nodeName: newNodeName,
+            nodeSynonym: newNodeSynonym
+        }, function (data) {
+            if (data["res"] != "success") {
+                alert("添加子节点时出错：" + data["msg"]);
+            } else {
+                location.reload();
+            }
+        }, 'json');
+        modal_add_child_node.modal("hide");
+    }
+
+    // 添加兄弟节点
+    var modal_add_brother_node = $('#modal-add-brother-node');
+    var modal_add_brother_node_name_input = $('#modal-add-brother-node-name-input');
+    var modal_add_brother_node_synonym_input = $('#modal-add-brother-node-synonym-input');
+    function showAddBrotherNodeModal() {
+        modal_add_brother_node.modal("show");
+    }
+    function addBrotherNode() {
+        // 得到当前节点
+        var nodeId = menu_button_group.val();
+        var newNodeName = modal_add_brother_node_name_input.val().trim();
+        var newNodeSynonym = modal_add_brother_node_synonym_input.val().trim();
+        if (newNodeName.length == 0) {
+            alert("节点名不能为空");
+            return;
+        }
+        // 添加子节点信息
+        $.post('{% url 'mixojapp:knowledge_tree_node_edit' %}', {
+            action: "add-brother",
+            nodeId: nodeId,
+            nodeName: newNodeName,
+            nodeSynonym: newNodeSynonym
+        }, function (data) {
+            if (data["res"] != "success") {
+                alert("添加子节点时出错：" + data["msg"]);
+            } else {
+                location.reload();
+            }
+        }, 'json');
+        modal_add_brother_node.modal("hide");
+    }
+    
+    // 删除节点
+    var modal_delete_node = $('#modal-delete-node');
+    var modal_delete_node_name = $('#modal-delete-node-name');
+    function showDeleteNodeModal() {
+        // 得到节点ID
+        var nodeId = menu_button_group.val();
+        // 得到节点信息
+        $.post('{% url 'mixojapp:knowledge_tree_node_edit' %}', {
+            action: "show",
+            nodeId: nodeId
+        }, function (data) {
+            modal_delete_node_name.text(data["name"]);
+        }, 'json');
+        modal_delete_node.modal("show");
+    }
+    function deleteNode() {
+        // 得到节点ID
+        var nodeId = menu_button_group.val();
+        $.post('{% url 'mixojapp:knowledge_tree_node_edit' %}', {
+            action: "delete",
+            nodeId: nodeId
+        }, function (data) {
+            if (data["res"] != "success") {
+                alert("删除节点时出错：" + data["msg"]);
+            } else {
+                location.reload();
+            }
+        }, 'json');
+        modal_delete_node.modal("hide");
+    }
+
+    // 向该节点添加题目
+    var modal_add_problem_node_name = $('#modal-add-problem-node-name');
+    var modal_add_problem = $('#modal-add-problem');
+    var modal_add_problem_id = $('#modal-add-problem-id');
+    function showAddProblemToNodeModal() {
+        // 得到节点ID
+        var nodeId = menu_button_group.val();
+        // 得到节点信息
+        $.post('{% url 'mixojapp:knowledge_tree_node_edit' %}', {
+            action: "show",
+            nodeId: nodeId
+        }, function (data) {
+            modal_add_problem_node_name.text(data["name"]);
+        }, 'json');
+        modal_add_problem.modal("show");
+    }
+    function addProblemToNode() {
+        // 得到节点ID
+        var nodeId = menu_button_group.val();
+        // 得到节点名
+        var nodeName = modal_add_problem_node_name.text();
+        // 得到OJ名
+        var oj = $('#modal-add-problem-select-oj').find('option:selected').text();
+        // 得到题目ID
+        var problemID = modal_add_problem_id.val();
+        modal_add_problem.modal("hide");
+
+        // 提交更新
+        $.post('{% url 'mixojapp:knowledge_tree_node_edit' %}', {
+            action: "add-problem",
+            nodeID: nodeId,
+            nodeName: nodeName,
+            ojName: oj,
+            problemID: problemID
+        }, function (data) {
+            if (data["res"] != "success") {
+                alert("更新题目知识树时出错：" + data["msg"]);
+            }
+        }, 'json');
+    }
+
+    var button_start_update_nodes = $('#button-start-update-nodes');
+    var button_stop_update_nodes = $('#button-stop-update-nodes');
+    var input_update_nodes_start = $('#input-update-nodes-start');
+    var input_update_nodes_stop = $('#input-update-nodes-stop');
+    var terminal_tip = $('#terminal-tip');
+    var update_nodes_status = false;
+    function updateEndId() {
+        input_update_nodes_stop.val(input_update_nodes_start.val());
+    }
+    function startUpdateNodesById() {
+        var startID = input_update_nodes_start.val().trim();
+        var endID = input_update_nodes_stop.val().trim();
+        if (startID == null || startID=="" || startID < 0) {
+            alert("起始ID格式不正确");
+            return;
+        }
+        if (endID == null || endID == "" || endID < startID) {
+            alert("结束ID格式不正确");
+            return;
+        }
+        button_start_update_nodes.attr("disabled", "disabled");
+        button_stop_update_nodes.removeAttr("disabled");
+
+        var mydate = new Date();
+        var date = mydate.getHours() + ":" + mydate.getMinutes() + ":" + mydate.getSeconds();
+        var tipText = terminal_tip.text();
+        var finalTipText = date + "> " + "开始更新..." + "\n" + tipText;
+        terminal_tip.text(finalTipText.substr(0, 3000));
+
+        update_nodes_status = true;
+        var oj = $('#select-oj').find('option:selected').text();
+        startUpdateNodes(oj, startID, endID);
+    }
+
+    function stopUpdateNodesById() {
+        button_stop_update_nodes.attr("disabled", "disabled");
+        button_start_update_nodes.removeAttr("disabled");
+
+        var mydate = new Date();
+        var date = mydate.getHours() + ":" + mydate.getMinutes() + ":" + mydate.getSeconds();
+        var tipText = terminal_tip.text();
+        var finalTipText = date + "> " + "更新停止..." + "\n" + tipText;
+        terminal_tip.text(finalTipText.substr(0, 3000));
+
+        update_nodes_status = false;
+    }
+
+    function startUpdateNodes(oj, curID, endID) {
+        var url = '{% url "mixojapp:knowledge_tree_update_nodes" %}';
+        var mydate = new Date();
+        var date = mydate.getHours() + ":" + mydate.getMinutes() + ":" + mydate.getSeconds();
+        var data = {
+            problemID: curID,
+            ojName: oj
+        };
+        curID = parseInt(curID);
+        $.ajax({
+            url: url,
+            async: true,
+            type: 'POST',
+            dataType: 'json',
+            data: data,
+            success: function (data) {
+                var tipText = terminal_tip.text();
+                var curTip = data["msg"];
+                var finalTipText = date + "> " + curTip + "\n" + tipText;
+                terminal_tip.text(finalTipText.substr(0, 3000));
+                if (curID < endID && update_nodes_status == true) {
+                    startUpdateNodes(oj, curID+1, endID);
+                }
+                if (curID >= endID) {
+                    tipText = terminal_tip.text();
+                    finalTipText = date + "> " + "更新完成" + "\n" + tipText;
+                    terminal_tip.text(finalTipText.substr(0, 3000));
+                    stopUpdateNodesById();
+                }
+            },
+            error: function (data) {
+            }
+        });
+    }
+</script>
+{% include "mixojapp/includes/_common_foot.html" %}

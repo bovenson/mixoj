@@ -1,0 +1,123 @@
+{% include "mixojapp/includes/_common_head.html" %}
+{% load staticfiles %}
+{% include "mixojapp/includes/_common_head_sec.html" %}
+{% include "mixojapp/includes/_common_nav.html" %}
+{#以上为引入头部#}
+
+<div class="container-fluid">
+    <div class="row">
+        <form action="{% url 'mixojapp:chuti' %}" method="POST">
+            <label for="select-oj"></label>
+            <select id = "select-oj" name="oj" class="col-xs-offset-1">
+                <option data-class="avatar" >All</option>
+                {% for oj in ojs %}
+                    <option data-class="avatar" >{{ oj.name }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="select-difficult">难度</label>
+            <select id = "select-difficult" name="difficult">
+                <option data-class="avatar" >All</option>
+                <option data-class="avatar" >1</option>
+                <option data-class="avatar" >2</option>
+                <option data-class="avatar" >3</option>
+                <option data-class="avatar" >4</option>
+                <option data-class="avatar" >5</option>
+            </select>
+
+            <label for="select-hot">热度</label>
+            <select id = "select-hot" name="hot">
+                <option data-class="avatar" >All</option>
+                <option data-class="avatar" >1</option>
+                <option data-class="avatar" >2</option>
+                <option data-class="avatar" >3</option>
+                <option data-class="avatar" >4</option>
+                <option data-class="avatar" >5</option>
+            </select>
+
+            <label for="select-knowledge">知识点</label>
+            <select id = "select-knowledge" name="knowledge">
+                <option data-class="avatar" >All</option>
+                {% for knowledge in knowledges %}
+                    <option data-class="avatar" >{{ knowledge }}</option>
+                {% endfor %}
+            </select>
+
+
+            <label for="select-number">数量</label>
+            <select id = "select-number" name="number">
+                <option data-class="avatar" >5</option>
+                <option data-class="avatar" >10</option>
+                <option data-class="avatar" >15</option>
+                <option data-class="avatar" >20</option>
+            </select>
+
+            <button type="submit">确定</button>
+        </form>
+    </div>
+    <div class="row">
+        <table class="table able-condensed table-striped table-bordered table-hover table-striped">
+            <thead>
+                <tr>
+                    <th >
+                        <label for="Ojname">OJ</label>
+                    </th>
+                    <th>
+                        <div>ID</div>
+                    </th>
+                    <th class="title">
+                        <label>标题</label>
+                    </th>
+                    <th>
+                        <div style="float: left;position: relative" >Total ac/Total sub</div>
+                    </th>
+                    <th>
+                        <div  style="float: left;position: relative"> User ac/User sub</div>
+                    </th>
+                    <th>难度</th>
+                    <th>热度</th>
+                    <th >
+                        <span>来源</span><br />
+                    </th>
+                    <th>
+                        <div style="float: left;position: relative" >更新时间</div>
+                    </th>
+                    <th  class="problem_type">
+                        <span>知识分类</span>
+                    </th>
+                </tr>
+        {#            循环显示题目#}
+                {% for problem in problems %}
+                <tr>
+                    <td>{{ problem.ojname }}</td>
+                    <td><a href="{% url 'mixojapp:problemdetail' problem.id %}">{{ problem.sourceid }}</a></td>
+                    <td><a href="{% url 'mixojapp:problemdetail' problem.id %}">{{ problem.title }}</a></td>
+                    <td>{{ problem.ac_rate }}</td>
+                    <td>{{ problem.user_ac_rate }}</td>
+
+                    <td>
+                        {% autoescape off %}
+                        {{ problem.difficult }}
+                        {% endautoescape  %}
+                    </td>
+                    <td>
+                        {% autoescape off %}
+                        {{ problem.hot_degree }}
+                        {% endautoescape  %}
+                    </td>
+                    <td>
+                        {% autoescape off %}
+                        {{ problem.source }}
+                        {% endautoescape %}
+                    </td>
+                    <td>{{ problem.update_time|date:"Y-m-d H:i:s" }}</td>
+                    <td>{{ problem.knowledge_tree_node_name }}</td>
+                </tr>
+                {% endfor %}
+            </thead>
+        </table>
+    </div>
+</div>
+
+
+{% include "mixojapp/includes/_common_foot.html" %}

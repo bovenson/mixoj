@@ -1,0 +1,136 @@
+{% include "mixojapp/includes/_common_head.html" %}
+{% load staticfiles %}
+{% include "mixojapp/includes/_common_head_sec.html" %}
+{% include "mixojapp/includes/_common_nav.html" %}
+{#以上为引入头部#}
+
+<div class="container-fluid" id="tree-main">
+    <div class="row">
+{#        爬取选项#}
+        <div class="col-xs-5">
+            <form>
+                <div class="form-inline row">
+{#                    <label class="col-xs-2" style="text-align: right;padding-top: 7px;">选择OJ</label>#}
+                    <label class="col-xs-4">
+                        <select class="form-control" id="select-oj">
+                            {% for oj in ojs %}
+                                <option>{{ oj.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </label>
+                </div>
+                <div class="clearfix" style="height: 15px;"></div>
+                <div class="form-inline row" style="padding-left: 15px;">
+{#                    <label class="col-xs-2" style="text-align: right;padding-top: 7px;">开始ID</label>#}
+                    <input class="form-control col-xs-4" type="number" id="input-update-start" oninput="updateEndId()" placeholder="Start ID">
+{#                    <label class="col-xs-2" style="text-align: right;padding-top: 7px;">结束ID</label>#}
+                    <input class="form-control col-xs-4 col-xs-offset-1" type="number" id="input-update-stop" placeholder="End ID">
+                </div>
+                <div class="clearfix" style="height: 15px;"></div>
+                <div class="form-inline row" style="padding-left: 15px;">
+                    <button class="btn btn-default" type="button" id="button-start-update" onclick="startUpdateById()">爬取</button>
+                    <button class="btn btn-default" type="button" id="button-stop-update" onclick="stopUpdateById()" disabled="disabled" >停止</button>
+                </div>
+{#                <div class="row">#}
+{#                    <button class="btn btn-default" type="button" id="button-start-update" onclick="updateHotDifficultDegree()">更新热度及难度</button>#}
+{#                </div>#}
+            </form>
+            <div class="clearfix" style="height: 15px;padding-left: 0;margin-left: 0;"></div>
+        </div>
+        <div class="panel panel-default col-xs-7" style="padding: 0;">
+            <div class="panel-heading">提示</div>
+                <pre style="color: white;background-color: black;font-size: 12px;height: 500px;overflow: auto;" id="terminal-tip"></pre>
+        </div>
+    </div>
+</div>
+
+<script>
+    var button_start_update = $('#button-start-update');
+    var button_stop_update = $('#button-stop-update');
+    var input_update_start = $('#input-update-start');
+    var input_update_stop = $('#input-update-stop');
+    var terminal_tip = $('#terminal-tip');
+    var update_status = false;
+    function updateEndId() {
+        input_update_stop.val(input_update_start.val());
+    }
+    function startUpdateById() {
+        var startID = input_update_start.val().trim();
+        var endID = input_update_stop.val().trim();
+        if (startID == null || startID=="" || startID < 0) {
+            alert("起始ID格式不正确");
+            return;
+        }
+        if (endID == null || endID == "" || endID < startID) {
+            alert("结束ID格式不正确");
+            return;
+        }
+        button_start_update.attr("disabled", "disabled");
+        button_stop_update.removeAttr("disabled");
+
+        var mydate = new Date();
+        var date = mydate.getHours() + ":" + mydate.getMinutes() + ":" + mydate.getSeconds();
+        var tipText = terminal_tip.text();
+        var finalTipText = date + "> " + "开始爬取..." + "\n" + tipText;
+        terminal_tip.text(finalTipText.substr(0, 3000));
+
+        update_status = true;
+        var oj = $('#select-oj').find('option:selected').text();
+        startUpdate(oj, startID, endID);
+    }
+
+    function stopUpdateById() {
+        button_stop_update.attr("disabled", "disabled");
+        button_start_update.removeAttr("disabled");
+
+        var mydate = new Date();
+        var date = mydate.getHours() + ":" + mydate.getMinutes() + ":" + mydate.getSeconds();
+        var tipText = terminal_tip.text();
+        var finalTipText = date + "> " + "爬取停止..." + "\n" + tipText;
+        finalTipText = date + "> " + "服务器更新热度及难度" + "\n" + tipText;
+        terminal_tip.text(finalTipText.substr(0, 3000));
+        updateHotDifficultDegree();
+
+        update_status = false;
+    }
+
+    function startUpdate(oj, curID, endID) {
+        var url = '{% url "mixojapp:craw_problem" %}';
+        var mydate = new Date();
+        var date = mydate.getHours() + ":" + mydate.getMinutes() + ":" + mydate.getSeconds();
+        var data = {
+            problemID: curID,
+            ojName: oj
+        };
+        curID = parseInt(curID);
+        $.ajax({
+            url: url,
+            async: true,
+            type: 'POST',
+            dataType: 'json',
+            data: data,
+            success: function (data) {
+                var tipText = terminal_tip.text();
+                var curTip = data["msg"];
+                var finalTipText = date + "> " + curTip + "\n" + tipText;
+                terminal_tip.text(finalTipText.substr(0, 3000));
+                if (curID < endID && update_status == true) {
+                    startUpdate(oj, curID+1, endID);
+                }
+                if (curID >= endID) {
+                    tipText = terminal_tip.text();
+                    finalTipText = date + "> " + "爬取完成" + "\n" + tipText;
+                    terminal_tip.text(finalTipText.substr(0, 3000));
+                    stopUpdateById();
+                }
+            },
+            error: function (data) {
+            }
+        });
+    }
+
+    function updateHotDifficultDegree() {
+        $.post("{% url 'mixojapp:update_hot_and_difficult_degree' %}", null, null, 'json');
+    }
+</script>
+{% include "mixojapp/includes/_common_foot.html" %}

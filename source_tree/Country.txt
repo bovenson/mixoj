@@ -1,0 +1,167 @@
+Afghanistan : Asia : AF
+Albania : Europe : AL
+Algeria : Africa : DZ
+Andorra : Europe : AD
+Angola : Africa : AO
+Antigua and Barbuda : North America : AG
+Argentina : South America : AR
+Armenia : Asia : AM
+Australia : Oceania : AU
+Austria : Europe : AT
+Azerbaijan : Asia : AZ
+Bahamas : North America : BF
+Bahrain : Asia : BH
+Barbados : North America : BB
+Bangladesh : Asia : BD
+Belarus : Europe : BY
+Belgium : Europe : BE
+Benin : Africa : BJ
+Bermuda : North America : BM
+Bahamas : North America : BS
+Bhutan : Asia : BT
+Botswana : Africa : BW
+Bolivia : South America : BO
+Brazil : South America : BR
+Bulgaria : Europe : BG
+Burkina Faso : Africa : BF
+Burundi : Africa : BI
+Cameroon : Africa : CM
+Canada : North America : CA
+Cape Verde : Africa : CV
+Central African Republic : Africa : CF
+Chad : Africa : TD
+Chile : South America : CL
+China : Asia : CN
+Colombia : South America : CO
+Comoros : Africa : KM
+Congo : Africa : CG
+Congo Democratic Republic : Africa : CD
+Cook Islands : Oceania : CK
+Costa Rica : North America : CR
+Croatia : Europe : HR
+Cuba : North America : CU
+Czech Republic : Europe : CZ
+Denmark : Europe : DK
+Djibouti : Africa : DJ
+Dominica : North America : DM
+East Timor : Asia : TP
+Ecuador : South America : EC
+Egypt : Africa : EG
+El Salvador : North America : SV
+Equatorial Guinea : Africa : GQ
+Estonia : Europe : EE
+Ethiopia : Africa : ET
+Finland : Europe : FI
+France : Europe : FR
+French Guiana : South America : GF
+Gabon : Africa : GA
+Gambia : Africa : GM
+Georgia : Asia : GE
+Germany : Europe : DE
+Ghana : Africa : GH
+Gibraltar : Europe : GI
+Great Britain : Europe : GB
+Greece : Europe : GR
+Grenada : North America : GD
+Guam : Oceania : GU
+Guatemala : North America : GT
+Guinea : Africa : GN
+GuineaBissau : Africa : GW
+Guyana : South America : GY
+Honduras : North America : HN
+Hungary : Europe : HU
+Iceland : Europe : IS
+India : Asia : IN
+Indonesia : Asia : ID
+Iran : Asia : IR
+Iraq : Asia : IQ
+Ireland : Europe : IE
+Israel : Asia : IL
+Italy : Europe : IT
+Jamaica : North America : JM
+Japan : Asia : JP
+Jordan : Asia : JO
+Kazakhstan : Asia : KZ
+Kenya : Africa : KE
+Kiribati : Oceania : KI
+South Korea : Asia : KR
+Kuwait : Asia : KW
+Laos : Asia : LA
+Lebanon : Asia : LB
+Liberia : Africa : LR
+Libya : Africa : LY
+Lesotho : Africa : LS
+Lithuania : Europe : LT
+Luxembourg : Europe : LU
+Madagascar : Africa : MG
+Malawi : Africa : MW
+Malaysia : Asia : MY
+Maldives : Asia : MV
+Mali : Africa : ML
+Malta : Europe : MT
+Marshall Islands : Oceania : MH
+Mauritania : Africa : MR
+Mauritius : Africa : MU
+Mexico : North America : MX
+Monaco : Europe : MC
+Moldova : Europe : MD
+Morocco : Africa : MA
+Mongolia : Asia : MN
+Mozambique : Africa : MZ
+Myanmar : Asia : MM
+Namibia : Africa : NA
+Nauru : Oceania : NR
+Nepal : Asia : NP
+Netherlands : Europe : NL
+New Zealand : Oceania : NZ
+Nicaragua : North America : NI
+Niger : Africa : NE
+Nigeria : Africa : NG
+Northern Mariana Islands : Oceania : MP
+Norway : Europe : NO
+Oman : Asia : OM
+Pakistan : Asia : PK
+Palau : Oceania : PW
+Panama : North America : PA
+Papua New Guinea : Oceania : PG
+Paraguay : South America : PY
+Peru : South America : PE
+Philippines : Asia : PH
+Poland : Europe : PL
+Portugal : Europe : PT
+Qatar : Asia : QA
+Romania : Europe : RO
+Russian Federation : Europe : RU
+Saint Kitts and Nevis : North America : KN
+Saint Lucia : North America : LC
+San Marino : Europe : SM
+Saudi Arabia : Asia : SA
+Senegal : Africa : SN
+Seychelles : Africa : SC
+Sierra Leone : Africa : SL
+Singapore : Asia : SG
+Slovak Republic : Europe : SK
+Solomon Islands : Oceania : Sb
+South Africa : Africa : ZA
+Spain : Europe : ES
+Sri Lanka : Asia : LK
+Sudan : Africa : SD
+Suriname : South America : SR
+Swaziland : Africa : SZ
+Sweden : Europe : SE
+Switzerland : Europe : CH
+Tajikistan : Asia : TJ
+Tanzania : Africa : TZ
+Thailand : Asia : TH
+Tokelau : Oceania : TK
+Trinidad and Tobago : North America : TT
+Tunisia : Africa : TN
+Turkmenistan : Asia : TM
+Ukraine : Europe : UA
+United Arab Emirates : Asia : AE
+United Kingdom : Europe : UK
+United States : North America : US
+United States of America : North America : USA
+Uzbekistan : Asia : UZ
+Venezuela : South America : VE
+Viet Nam : Asia : VN

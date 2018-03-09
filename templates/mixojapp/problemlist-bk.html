@@ -1,0 +1,120 @@
+{% include "mixojapp/includes/_common_head.html" %}
+
+{% load staticfiles %}
+<link rel="stylesheet" href="{% static 'mixojapp/css/problem_list.css' %}" />
+<script language="JavaScript" src="{% static 'mixojapp/js/problem_list.js' %}"></script>
+
+{% include "mixojapp/includes/_common_head_sec.html" %}
+{% include "mixojapp/includes/_common_nav.html" %}
+<!---------- CUT ---------->
+
+
+
+
+{#题目列表#}
+<table class="table able-condensed table-striped table-bordered table-hover table-striped">
+    <thead>
+        <form action="/change_order/" method="post">
+            {%  csrf_token  %}
+        <tr>
+            <th >
+                <label for="Ojname">OJ</label>
+                <br/>
+                <select name ="Ojname" id = "Ojname" >
+                    <option value="All" data-class="avatar" >All </option>
+                    <option value="Poj" data-class="avatar" >Poj</option>
+                    <option value="Hysbz" data-class="avatar" >Hysbz</option>
+                </select>
+            </th>
+            <th>
+                <div>ID</div>
+                <div style="float:left;position: relative"><input type="radio" name="Order" data-labelauty="↑" value="Prolbme_ASC"></div>
+                <div style="float: left;position: relative"> <input type="radio" name="Order"  data-labelauty="↓" value="Prolbme_DESC"></div>
+                <br/>
+                <div style="float: left;position: relative"><input  type="search" id="ProbNum" name="ProbNum" class="search_text" style="width:40%" /></div>
+            </th>
+            <th class="title">
+                <label>标题</label>
+                <br />
+                <input type="search" id="title" name="title" class="search_text" style="width:70%" />
+            </th>
+            <th>
+                <div style="float: left;position: relative" >Total ac/Total sub</div>
+                <div style="float: left;position: relative"><input type="radio" name="Order"  data-labelauty="↑" value="Total_ac_ASC" style="float: left;position: relative"></div>
+                <div style="float: left;position: relative"><input type="radio" name="Order"  data-labelauty="↓" value="Total_ac_DESC" style="float: right;position: relative"></div>
+            </th>
+            <th>
+                <div  style="float: left;position: relative"> User ac/User sub</div>
+                <div style="float: left;position: relative"><input type="radio" name="Order"  data-labelauty="↑" value="User_ac_ASC" ></div>
+                <div style="float: left;position: relative;"><input type="radio" name="Order"  data-labelauty="↓" value="User_ac_DESC"></div>
+            </th>
+            <th >
+                <span>来源</span><br />
+                <input type="search" id="Source" name="Source" class="search_text" style="width:70%" />
+            </th>
+            <th>
+                <div style="float: left;position: relative" >更新时间</div>
+                <div style="float: left;position: relative" ><input type="radio" name="Updata_time"   data-labelauty="↑" value="Updata_time_ASC"></div>
+                <div style="float: left;position: relative" ><input type="radio" name="Updata_time"  data-labelauty="↓" value="Uptada_time_DESC"></div>
+            </th>
+            <th  class="problem_type">
+                <span>知识分类</span>
+                <br/>
+                <div style="color: #5bc0de">
+                    <input type="search" id="Problem_type" name="Problem_type" class="search_text" style="width:95%" value="" />
+                </div>
+            </th>
+            <th><input type="submit" value="提交"></th>
+        </tr>
+        </form>
+{#            循环显示题目#}
+        {% for problem in problems %}
+        <tr>
+            <td>{{ problem.ojname }}</td>
+            <td><a href="{% url 'mixojapp:problemdetail' problem.id %}">{{ problem.sourceid }}</a></td>
+            <td><a href="{% url 'mixojapp:problemdetail' problem.id %}">{{ problem.title }}</a></td>
+            <td>{{ problem.ac_rate }}</td>
+            <td>{{ problem.user_ac_rate }}</td>
+            <td>
+                {% autoescape off %}
+                {{ problem.source }}
+                {% endautoescape %}
+            </td>
+            <td>{{ problem.update_time|date:"Y-m-d H:i:s" }}</td>
+            <td>{{ problem.knowledge_tree_node_name }}</td>
+            <td class="update-checkbox">
+                <label for="{{ problem.id }}">
+                    <input type="checkbox" name="problem-update-checkbox" id="{{ problem.id }}" />
+                </label>
+{#                <input class="update-checkbox-button" type="button" value="Update" />#}
+            </td>
+        </tr>
+        {% endfor %}
+    </thead>
+</table>
+
+<nav style="text-align: center;margin-left: 10%; margin-right: 10%">
+    <ul class="pagination">
+        <li><a href="{% url 'mixojapp:problemlist_given_pageno' 1 %}">&iota;&laquo;</a></li>
+
+        {% if page1st > 0 %}
+            <li><a href="{% url 'mixojapp:problemlist_given_pageno' page1st %}">{{ page1st }}</a></li>
+        {% endif %}
+        {% if page2ed > 0 %}
+            <li><a href="{% url 'mixojapp:problemlist_given_pageno' page2ed %}">{{ page2ed }}</a></li>
+        {% endif %}
+        {% if page3th > 0 %}
+            <li class="active"><a href="{% url 'mixojapp:problemlist_given_pageno' page3th %}">{{ page3th }}</a></li>
+        {% endif %}
+        {% if page4th > 0 %}
+            <li><a href="{% url 'mixojapp:problemlist_given_pageno' page4th %}">{{ page4th }}</a></li>
+        {% endif %}
+        {% if page5th > 0 %}
+            <li><a href="{% url 'mixojapp:problemlist_given_pageno' page5th %}">{{ page5th }}</a></li>
+        {% endif %}
+
+        <li><a href="{% url 'mixojapp:problemlist_given_pageno' page_last %}">&raquo;&iota;</a></li>
+    </ul>
+</nav>
+
+{% include "mixojapp/includes/_common_foot.html" %}

@@ -1,0 +1,231 @@
+Aabenraa : Denmark
+Aalborg : Denmark
+Aarhus : Denmark
+Helsingor : Denmark
+Copenhagen : Denmark
+Aalesund : Norway
+Haugesund : Norway
+Oslo : Norway
+sola : Norway
+Abadan : Iran
+Nandar Abbas : Iran
+Bandar Khomeini : Iran
+Bushire : Iran
+Abu Dhabi : United Arab Emirates
+Dubai : United Arab Emirates
+Sharjah : United Arab Emirates
+Acapulco : Mexico
+Guaymas : Mexico
+Ensenada : Mexico
+La Paz : Mexico
+Manzanillo : Mexico
+Tampico : Mexico
+Adelaide : Australia
+Brisbane : Australia
+Bunbury : Australia
+Darwin : Australia
+Launceston : Australia
+Melborne : Australia
+Perth : Australia
+Port Kembla : Australia
+Sydney : Australia
+Alexandria : Egypt
+Port Said : Egypt
+Suez : Egypt
+Algiers : Algeria
+Annaba : Algeria
+Oran : Algeria
+Amsterdam : Netherlands
+Rotterdam : Netherlands
+Boston : United States
+Chicago : United States
+San Diego : United States
+Detroit : United States
+Houston : United States
+San Francisco : United States
+New York : United States
+Oakland : United States
+Philadedlphi : United States
+Portland New Orleans : United States
+Los Angeles : United States
+Miami : United States
+Mobile : United States
+Boston : United States of America
+Chicago : United States of America
+San Diego : United States of America
+Detroit : United States of America
+Houston : United States of America
+San Francisco : United States of America
+New York : United States of America
+Oakland : United States of America
+Philadedlphi : United States of America
+Portland New Orleans : United States of America
+Los Angeles : United States of America
+Miami : United States of America
+Mobile : United States of America
+Ancona : Italy
+Geneva : Italy
+Naples : Italy
+Venice : Italy
+Arica : Chile
+Iquique : Chile
+Valparaiso : Chile
+Victoria : Chile
+Antwerp : Belgium
+Bruseel : Belgium
+Zeebrugge : Belgium
+Ghent : Belgium
+Aqaba : Jordan
+Athens : Greece
+Piraeus : Greece
+Thessaloniki : Greece
+Auckland : New Zealand
+Chris Church Dunedin : New Zealand
+Lyttelton : New Zealand
+Napier : New Zealand
+New Plymouth : New Zealand
+Wellington : New Zealand
+Liverpool : Great Britain
+London : Great Britain
+Manchester : Great Britain
+New Castle : Great Britain
+Liverpool : United Kingdom
+London : United Kingdom
+Manchester : United Kingdom
+New Castle : United Kingdom
+Bahia Blanca : Argentina
+Buenos Aires : Argentina
+Port of Argentina : Argentina
+Bangkok : Thailand
+Barcelona : Spain
+Bilbao : Spain
+Cadiz : Spain
+Malaga : Spain
+Santander : Spain
+Bassein : Myanmar
+Rangoon : Myanmar
+Bombay : India
+Calcutta : India
+Kakinada : India
+Bombay : Indonesia
+Calcutta : Indonesia
+Kakinada : Indonesia
+Bordeaux : France
+Dunkirk Le Havre Marsei : France
+Sete : France
+Toulon : France
+Bourgas : Bulgaria
+Varna : Bulgaria
+Bremen : Germany
+Humburg : Germany
+Frankfurt : Germany
+Rostock : Germany
+Butterworth Malacca Penang : Malaysia
+Port Kelang : Malaysia
+Callao : Peru
+San Juan : Peru
+Hai Phong : Viet Nam
+Hanoi : Viet Nam
+Ho Chi Minh City : Viet Nam
+Cape Town : Lesotho
+East London : Lesotho
+Durban : Lesotho
+Port Elizabeth : Lesotho
+Cape Town : South Africa
+East London : South Africa
+Durban : South Africa
+Port Elizabeth : South Africa
+Caracas Maracaibo : Venezuela
+Puerto Cabello : Venezuela
+La Guaira : Venezuela
+Cebu : Philippines
+Manila : Philippines
+Tabaco : Philippines
+Chalna : Bangladesh
+Chittagong : Bangladesh
+Dacca : Bangladesh
+Kawasaki : Japan
+Kitakyushu : Japan
+Kobe : Japan
+Fukuo : Japan
+Hiroshima : Japan
+Kagoshima : Japan
+Nagasaki : Japan
+Nagoya : Japan
+Osaka : Japan
+Tokyo : Japan
+Yokohama : Japan
+Vancouver : Canada
+Montreal : Canada
+Toronto : Canada
+Quebec : Canada
+Victoria : Canada
+Colombo : Sri Lanka
+Trincomalee : Sri Lanka
+Panama : Panama
+Colon : Panama
+Constantsa : Romania
+Cork : Ireland
+Dublin : Ireland
+Cotonou : Benin
+Porto Novo : Benin
+Rijeka : Croatia
+Croatia : Croatia
+Jeddah : Saudi Arabia
+Dammam : Saudi Arabia
+Doha : Qatar
+Umm Said : Qatar
+Douala : Cameroon
+Victoria : Cameroon
+Durresi : Albania
+Valona : Albania
+Gdynia : Poland
+Szozecin : Poland
+Gothenburg : Sweden
+Halmstad : Sweden
+Helsingborg : Sweden
+Malmo : Sweden
+Visby : Sweden
+Wallhamn : Sweden
+Gwadur : Pakistan
+Karachi : Pakistan
+Haifa : Israel
+Tel Aviv : Israel
+Helsinki : Finland
+Hamina : Finland
+Kemi : Finland
+Oulu : Finland
+Turku : Finland
+Vasa : Finland
+Hungnam : North Korea
+Nampo : North Korea
+Inchon : South Korea
+Mikpo Pusan : South Korea
+Kaliningrad : Belarus
+Kholmsk Leninggrad : Belarus
+Nakhodka Murmansk : Belarus
+Vosochny : Belarus
+Yalta : Belarus
+Kaliningrad : Russian Federation
+Kholmsk Leninggrad : Russian Federation
+Nakhodka Murmansk : Russian Federation
+Vosochny : Russian Federation
+Yalta : Russian Federation
+Lisbon : Portugal
+Majunga : Madagascar
+Tamatave : Madagascar
+Malta : Malta
+Victoria : Malta
+Monrovia : Liberia
+Muscat : Oman
+Odessa : Ukraine
+Paramaribo : Suriname
+Paranagua : Brazil
+Rio de janeiro : Brazil
+Santos : Brazil
+Recife : Brazil
+Rio Grande Salvador : Brazil
+Rabat : Morocco
+Tangier : Morocco
+Reykjavik : Iceland
+Talin : Estonia

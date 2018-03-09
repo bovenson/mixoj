@@ -1,0 +1,93 @@
+{% include "mixojapp/includes/_common_head.html" %}
+
+{% load staticfiles %}
+<link rel="stylesheet" href="{% static 'mixojapp/css/problem_list.css' %}" />
+<script language="JavaScript" src="{% static 'mixojapp/js/problem_list.js' %}"></script>
+{#datatables#}
+<link rel="stylesheet" href="{% static 'public/css/jquery.dataTables.css' %}" />
+<script src="{% static 'public/js/jquery.dataTables.js' %}"></script>
+
+{#<script src="{% static 'public/js/dataTables.bootstrap.js' %}"></script>#}
+{#<link rel="stylesheet" href="{% static 'public/css/dataTables.bootstrap.css' %}" />#}
+
+{% include "mixojapp/includes/_common_head_sec.html" %}
+{% include "mixojapp/includes/_common_nav.html" %}
+
+<div id="data-table">
+    <table id="problem-table" class="display table table-bordered">
+        <thead>
+            <tr>
+                <th>
+                    <label for="select-oj"></label>
+                    <select id = "select-oj" >
+                        <option data-class="avatar" >All</option>
+                        {% for oj in ojs %}
+                            <option data-class="avatar" >{{ oj.name }}</option>
+                        {% endfor %}
+                    </select>
+                </th>
+                <th>ID</th>
+                <th>标题</th>
+                <th>题目AC率</th>
+                <th>用户AC率</th>
+                <th>难度</th>
+                <th>热度</th>
+                <th>来源</th>
+                <th>最后更新</th>
+                <th>分类</th>
+            </tr>
+        </thead>
+    </table>
+</div>
+
+<script>
+    var dataTableElement = $('#problem-table');
+    var data_url = "/problemlist/ojname/all";
+    var page_from = "{{ page_from }}";
+{#    alert(page_from);#}
+    if (page_from == "knowledge_tree") {
+        data_url = "/problemlist/knowledge/" + {{ node_id }};
+    }
+    var dataTable = dataTableElement.DataTable({
+        "columnDefs": [ {
+            "targets": [0],
+            "orderable": false
+        } ],
+        ajax: data_url
+    });
+    if (page_from == "source_tree") {
+        var source_title = '{{ source_title }}';
+        search_source(source_title);
+{#        data_url = "/problemlist/sourcetree/title/" + source_title;#}
+    }
+    $('#select-oj').change(function () {
+        var oj = $('#select-oj').find('option:selected').text();
+        dataTable.ajax.url("/problemlist/ojname/" + oj).load();
+    });
+    function getProblemByKnowledge(nodeID) {
+        dataTable.ajax.url("/problemlist/knowledge/" + nodeID).load();
+{#        alert(nodeID);#}
+    }
+    function search_source(source) {
+        dataTable.search(source).draw();
+    }
+{#    $(document).ready( function () {#}
+{#        function initTable(data) {#}
+{#        function getData() {#}
+{#            var oj = $('#select-oj').find('option:selected').text();#}
+{#            $.post('{% url "mixojapp:get_all_problem" %}', {}, function(res_data) {#}
+{#                initTable(res_data["data"]);#}
+{#            }, 'json');#}
+{#        }#}
+{#        $('#table_id').DataTable({#}
+{#            data: getAllProblem()#}
+{#            serverSide: true,#}
+{#            ajax: {#}
+{#                url: "/problemlist",#}
+{#                type: "POST"#}
+{#            }#}
+{#        });#}
+{#    } );#}
+</script>
+
+{% include "mixojapp/includes/_common_foot.html" %}

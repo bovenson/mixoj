@@ -1,0 +1,93 @@
+{% include "mixojapp/includes/_common_head.html" %}
+{% include "mixojapp/includes/_common_head_sec.html" %}
+{% include "mixojapp/includes/_common_nav.html" %}
+{#以上为引入头部#}
+
+
+<div class="page-header" style="margin-left: 5%; margin-right: 5%">
+    <h1>{{ problem.title }}</h1>
+    <strong>Time Limits:</strong>
+    <small>{{ problem.time_limit }}</small>
+    <small>&nbsp;&nbsp;&nbsp;&nbsp;</small>
+
+    <strong>Memory Limits:</strong>
+    <small>{{ problem.memory_limit }}</small>
+    <small>&nbsp;&nbsp;&nbsp;&nbsp;</small>
+
+    <strong>ID:</strong>
+    <small>{{ problem.sourceid }}</small>
+    <small>&nbsp;&nbsp;&nbsp;&nbsp;</small>
+
+    <strong>Source URL:</strong>
+    <small><a href="{{ problem.url }}"><strong>Click</strong></a></small>
+    <small>&nbsp;&nbsp;&nbsp;&nbsp;</small>
+
+    <strong>Statistics:</strong>
+    <small><a href="{% url 'mixojapp:show_statistics' problem.id %}"><strong>Click</strong></a></small>
+{#    以下为题目信息#}
+
+    <h3>Description</h3>
+    <div class="well">
+        {% autoescape off %}
+        {{ problem.description }}
+        {% endautoescape %}
+    </div>
+
+    {% if problem.pinput|length != 0 %}
+        <h3>Input</h3>
+        <div class="well">
+            {% autoescape off %}
+            {{ problem.pinput }}
+            {% endautoescape %}
+        </div>
+    {% endif %}
+
+    {% if problem.poutput|length != 0 %}
+        <h3>Output</h3>
+        <div class="well">
+            {% autoescape off %}
+            {{ problem.poutput }}
+            {% endautoescape %}
+        </div>
+    {% endif %}
+
+    {% if problem.sample_input|length != 0 %}
+    <h3>Sample Input</h3>
+    <div class="well">
+        {% autoescape off %}
+        {{ problem.sample_input }}
+        {% endautoescape %}
+    </div>
+    {% endif %}
+
+    {% if problem.sample_output|length != 0 %}
+    <h3>Sample Output</h3>
+    <div class="well">
+        {% autoescape off %}
+        {{ problem.sample_output }}
+        {% endautoescape %}
+    </div>
+    {% endif %}
+
+    {% if problem.hint|length != 0 %}
+    <h3>Hint</h3>
+    <div class="well">
+        {% autoescape off %}
+        {{ problem.hint }}
+        {% endautoescape %}
+    </div>
+    {% endif %}
+
+    {% if problem.source|length != 0 %}
+    <h3>Source</h3>
+    <div class="well">
+        {% autoescape off %}
+        {{ problem.source }}
+        {% endautoescape %}
+    </div>
+    {% endif %}
+
+</div>
+
+{#以下为引入尾部#}
+{% include "mixojapp/includes/_common_foot.html" %}
